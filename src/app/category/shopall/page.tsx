@@ -1,5 +1,5 @@
 
-export default function shopall(){
+export default function Shopall(){
 
 
 

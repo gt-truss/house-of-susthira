@@ -5,7 +5,7 @@ import { MdOutlineWbSunny } from "react-icons/md";
 import Link from "next/link"
 
 
-export default function about() {
+export default function About() {
 
  const [currPath, setCurrPath] = useState('');
 

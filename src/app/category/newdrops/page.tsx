@@ -3,7 +3,7 @@ import  magentaSaree  from "../../../../public/newin/7f72c18c-5e05-4498-b04d-01a
 import  goldenSaree  from "../../../../public/newin/140d1f35-76ff-4666-a25e-132eaa2cc032.jpeg";
 import  pinkSusthiraSaree  from "../../../../public/newin/d2f44f66-6215-461f-b38c-f91e020009a0.jpeg";
 
-export default function newdrops(){
+export default function Newdrops(){
 
 
 	const newdropsArray = [

@@ -1,5 +1,5 @@
 
-export default function suits(){
+export default function Suits(){
 
 	return (
 		<div>

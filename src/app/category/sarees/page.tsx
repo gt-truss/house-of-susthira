@@ -1,5 +1,5 @@
 
-export default function sarees(){
+export default function Sarees(){
 
 	return (
 		<div>
