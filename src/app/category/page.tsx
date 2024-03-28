@@ -5,5 +5,5 @@ export default function Category(){
 	const router = useRouter();	
 	useEffect(()=>{
 		router.push("/category/shopall");
-	},[])
+	},[]);
 }
