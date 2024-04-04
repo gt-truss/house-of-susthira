@@ -1,5 +1,5 @@
 "use client";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import Image from "next/image";
 import logo from "../../public/House of susthira Final Logo.png";
 import sareeCategory from "../../public/categories/d53835af-a24d-4673-855d-cebe151b8b8d.jpeg";
@@ -13,60 +13,54 @@ import  pinkSusthiraSaree  from "../../public/newin/d2f44f66-6215-461f-b38c-f91e
 import  pinkSusthiraSaree2  from "../../public/newin/8ef990d3-7253-4168-9c85-b228aadeb00d.jpeg";
 
 export default function Home() {
-
-	
-
-
-	const categoryArray = [
-
-
-		{
+        const categoryArray = [
+	{
 			id:1,
 			title: "Silk Saree",
 			image: sareeCategory,
 			text: "The most beautiful silk sarees from the depth of Indian artistic landscape, from North to South to East to West. We have it all at House of Susthira"
-		},
+	},
 
-		{
+	{
 			id:2,
 			title: "Silk Suits",
 			image: suitCategory,
 			text: "The epitome of grace and sophistication, the modern Indian woman adorns herself in the most elegant suits, a timeless reflection of her refined taste and cultural heritage"
-		},
+	},
 
-		{
+	{
 			id:3,
 			title: "Pashmina",
 			image: pashminaCategory,
 			text: "For the modern Indian woman, pashmina is more than just a fabric—it's a symbol of sophistication and elegance. "
-		}	
+	}	
 
-	]
+        ]
 
 	const newdropsArray = [
 
 		
-		{
+	{
 			id: 1,
 			image:magentaSaree ,
 			hoverImage: magentaSaree2,
 			itemName: "Magenta Saree",
 			price:"₹20,000.00" 
-		},
-		{
+	},
+	{
 			id: 2,
 			image:goldenSaree ,
 			hoverImage: goldenSaree2,
 			itemName: "Golden Saree",
 			price:"₹15,000.00" 
-		},
-		{
+	},
+	{
 			id: 3,
 			image:pinkSusthiraSaree ,
 			hoverImage: pinkSusthiraSaree2,
 			itemName: "Pink Susthira Saree",
 			price:"₹10,200.00" 
-		},
+	},
 
 	]
 
@@ -117,7 +111,6 @@ export default function Home() {
         <h1 className="text-[6rem] font-extrabold">Categories</h1>
 
       <div className="flex mt-10 gap-3">
-
 	      {categoryArray.map((item)=>{
 		      return(
         		<div key={item.id}>
@@ -131,10 +124,8 @@ export default function Home() {
         		    Shop Now
         		  </button>
         		</div>
-
 		      )
 	      })}
-
       </div>
 
      </div>
