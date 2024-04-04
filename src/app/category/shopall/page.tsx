@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import Image from "next/image";
 import {useEffect, useState} from "react"
 import AddProductForm from "../../../components/AddProductForm" ; 
@@ -67,7 +68,7 @@ export default function Shopall(){
 		       <IoMdAddCircle size={25}/>
 		       <p>Add Product</p> 
 		     </div>
-		     {isLoggedIn ?  <Modal isOpen={addProductModal} onClose={()=>setAddProductModal(false)} children={<AddProductForm/>}/> : <Modal isOpen={isAdminModalOpen} onClose={()=>setIsAdminModalOpen(false)} children={<AdminForm />}/> }
+		     {isLoggedIn ?  <Modal isOpen={addProductModal} onClose={()=>setAddProductModal(false)} text={<React.Fragment><AddProductForm/></React.Fragment>}/> : <Modal isOpen={isAdminModalOpen} onClose={()=>setIsAdminModalOpen(false)} text={<React.Fragment><AdminForm /></React.Fragment>}/> }
                   </div>
 		</div>
 	)

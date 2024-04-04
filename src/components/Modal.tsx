@@ -4,10 +4,10 @@ interface ModalProps{
 
 	isOpen: any;
 	onClose: any;
-	children: any;
+	text: any;
 
 }
-export default function Modal({isOpen, onClose, children}: ModalProps){
+export default function Modal({isOpen, onClose, text}: ModalProps){
 	return (
 		<>
 		{isOpen && (
@@ -22,7 +22,7 @@ export default function Modal({isOpen, onClose, children}: ModalProps){
 				 <RxCross2 size={15}/>
                                </button>
                                {/* Modal Content */}
-                               <div>{children}</div>
+                               <div>{text}</div>
                              </div>
                  </div>
 		)}
