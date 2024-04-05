@@ -9,12 +9,14 @@ import { MdOutlineDeleteOutline } from "react-icons/md";
 import Modal from "../../../components/Modal";
 import axios from "axios";
 import { usePathname } from "next/navigation";
+import Loading from "../../../components/Loading"
 
 export default function Saree() {
   const [fetchedProducts, setFetchedProducts] = useState<any[]>([]);
   const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
   const [addProductModal, setAddProductModal] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   //const [token, setToken] = useState<String | null>('');
   const pathname = usePathname();
   const segments = pathname.split('/');
@@ -22,11 +24,14 @@ export default function Saree() {
 	//console.log(category);
 
   const fetchProductsCategorizedAsSaree = async () => {
+    setIsLoading(true);
     try {
       const response = await axios.get(`${process.env.ENDPOINT_URL}/${category}`);
       setFetchedProducts(response.data);
     } catch (err) {
       console.error(err);
+    } finally{
+            setIsLoading(false);
     }
   };
 
@@ -68,35 +73,28 @@ export default function Saree() {
   return (
     <div>
       <div className=" flex gap-4">
-        <div className="flex flex-row gap-4 text-left">
-          {fetchedProducts.map((product) => {
-            return (
-              <div key={product._id}>
-                <Image
-                  className="max-w-[15rem] max-h-[15rem]"
-                  width={205}
-                  height={205}
-                  src={product.productImageUrl}
-                  alt={product.name}
-                />
-                <div className="flex justify-between mt-2 items-center">
-                  <p>{product.name}</p>
-                  <div>
-                    {isLoggedIn ? (
-                      <div className="flex flex-row gap-1">
-                        {" "}
-                        <MdOutlineDeleteOutline
-                          onClick={() => deleteProduct(product._id)}
-                        />{" "}
-                      </div>
-                    ) : null}
-                  </div>
-                </div>
-                <p className="font-semibold">₹{product.price}</p>
-              </div>
-            );
-          })}
-        </div>
+		     {isLoading ? <Loading/> : (
+
+		           <div className="flex flex-row gap-4 text-left">
+		              {
+		                    fetchedProducts.map((product)=>{
+		                 	return(
+		                 		<div key={product._id}>
+		             			<Image className="max-w-[15rem] max-h-[15rem]" width={205} height={205} src={product.productImageUrl} alt={product.name}/>
+		             			<div className="flex justify-between mt-2 items-center">
+		                 			   <p>{product.name}</p> 
+		             			   <div>
+		             				   {isLoggedIn ?  <div className="flex flex-row gap-1"> <MdOutlineDeleteOutline onClick={()=>deleteProduct(product._id)}/> </div>  : null}
+		             		           </div>  						
+		             	                </div> 
+		                 			<p className="font-semibold">₹{product.price}</p> 
+		                 		</div> 
+		                 	)
+		                    })
+		              }
+		           </div> 
+
+		     )}
         <div
           onClick={() => {
             if (isLoggedIn) {
