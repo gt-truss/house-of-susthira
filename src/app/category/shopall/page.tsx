@@ -5,24 +5,29 @@ import {useEffect, useState} from "react"
 import AddProductForm from "../../../components/AddProductForm" ; 
 import AdminForm from "../../../components/AdminForm";
 import { IoMdAddCircle } from "react-icons/io";
+import { MdOutlineDeleteOutline } from "react-icons/md";
 import Modal from "../../../components/Modal";
 import axios from "axios";
+import Loading from "../../../components/Loading"
 
 export default function Shopall(){
 	const [fetchedProducts, setFetchedProducts] = useState<any[]>([]);	
 	const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
 	const [addProductModal, setAddProductModal] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	//const [token, setToken] = useState<String | null>('');
 
         const fetchProducts = async()=>{
+		setIsLoading(true);
         	try{
         		const response = await axios.get(`${process.env.ENDPOINT_URL}/products`);
-			console.log(response.data);
         	   	setFetchedProducts(response.data);
-        	}catch(err){
+        	} catch(err){
         		console.error(err);
-        	}
+		} finally{
+		        setIsLoading(false);
+		}
         }
 
 	const checkAuthicatedAdmin = async()=>{
@@ -33,7 +38,7 @@ export default function Shopall(){
 					Authorization: localStorage.getItem('token')
 				}
 			})
-			console.log(response.data);
+			//console.log(response.data);
 			console.log("Admin authenticated successfully");
 			setIsLoggedIn(true);
 		} catch(err){
@@ -41,29 +46,45 @@ export default function Shopall(){
 		}
 
 	}
+	const deleteProduct = async (productId:string)=>{
+		try{
+			//console.log(productId);
+			const response = await axios.delete(`${process.env.ENDPOINT_URL}/products/${productId}`)
+			//console.log(response.data);
+			//console.log("Product Deleted Success");
+			window.location.reload();
+		} catch(err){}
+	}
 
 	useEffect(()=>{
 	        fetchProducts();
-		//const item = localStorage.getItem('token')
-		//setToken(item);
 		checkAuthicatedAdmin();
 	},[])
 	return (
 		<div>
                   <div className=" flex gap-4">
-		      <div className="grid grid-cols-3 gap-4 text-center">
-		         {
-		               fetchedProducts.map((product)=>{
-		            	return(
-		            		<div key={product._id}>
-						<Image className="max-w-[15rem] max-h-[15rem]" width={205} height={205} src={product.productImageUrl} alt={product.name}/>
-		            			<p className="font-semibold">{product.name}</p> 
-		            			<p>₹{product.price}</p> 
-		            		</div> 
-		            	)
-		               })
-		         }
-		     </div> 
+		     {isLoading ? <Loading/> : (
+
+		           <div className="flex flex-row gap-4 text-left">
+		              {
+		                    fetchedProducts.map((product)=>{
+		                 	return(
+		                 		<div key={product._id}>
+		             			<Image className="max-w-[15rem] max-h-[15rem]" width={205} height={205} src={product.productImageUrl} alt={product.name}/>
+		             			<div className="flex justify-between mt-2 items-center">
+		                 			   <p>{product.name}</p> 
+		             			   <div>
+		             				   {isLoggedIn ?  <div className="flex flex-row gap-1"> <MdOutlineDeleteOutline onClick={()=>deleteProduct(product._id)}/> </div>  : null}
+		             		           </div>  						
+		             	                </div> 
+		                 			<p className="font-semibold">₹{product.price}</p> 
+		                 		</div> 
+		                 	)
+		                    })
+		              }
+		           </div> 
+
+		     )}
 		     <div onClick={()=>{if(isLoggedIn){setAddProductModal(true)}else{setIsAdminModalOpen(true)}}} className="flex flex-col gap-3 items-center text-gray-400 cursor-pointer">
 		       <IoMdAddCircle size={25}/>
 		       <p>Add Product</p> 

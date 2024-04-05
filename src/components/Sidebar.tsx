@@ -19,10 +19,10 @@ export default function Sidebar(){
 			          <Link href="/category/newdrops">New In</Link>
 				</li> 
 				<li>
-			          <Link href="/category/sarees">Sarees</Link>
+			          <Link href="/category/saree">Sarees</Link>
 				</li> 
 				<li>
-			          <Link href="/category/suits">Suits</Link>
+			          <Link href="/category/suit">Suits</Link>
 				</li> 
 			</ul> 
 

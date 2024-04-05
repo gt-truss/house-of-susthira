@@ -5,6 +5,7 @@ import {useEffect, useState} from "react"
 import AddProductForm from "../../../components/AddProductForm" ; 
 import AdminForm from "../../../components/AdminForm";
 import { IoMdAddCircle } from "react-icons/io";
+import { MdOutlineDeleteOutline } from "react-icons/md";
 import Modal from "../../../components/Modal";
 import axios from "axios";
 
@@ -17,8 +18,7 @@ export default function Newdrops(){
 
         const fetchProducts = async()=>{
         	try{
-        		const response = await axios.get(`${process.env.ENDPOINT_URL}/products`)
-			console.log(response.data);
+        		const response = await axios.get(`${process.env.ENDPOINT_URL}/products`);
         	   	setFetchedProducts(response.data);
         	}catch(err){
         		console.error(err);
@@ -33,13 +33,22 @@ export default function Newdrops(){
 					Authorization: localStorage.getItem('token')
 				}
 			})
-			console.log(response.data);
+			//console.log(response.data);
 			console.log("Admin authenticated successfully");
 			setIsLoggedIn(true);
 		} catch(err){
 			console.error("Error while authenticating admin", err);
 		}
 
+	}
+	const deleteProduct = async (productId:string)=>{
+		try{
+			//console.log(productId);
+			const response = await axios.delete(`${process.env.ENDPOINT_URL}/products/${productId}`)
+			//console.log(response.data);
+			//console.log("Product Deleted Success");
+			window.location.reload();
+		} catch(err){}
 	}
 
 	useEffect(()=>{
@@ -51,14 +60,19 @@ export default function Newdrops(){
 	return (
 		<div>
                   <div className=" flex gap-4">
-		      <div className="grid grid-cols-3 gap-4 text-center">
+		      <div className="flex flex-row gap-4 text-left">
 		         {
 		               fetchedProducts.map((product)=>{
 		            	return(
 		            		<div key={product._id}>
 						<Image className="max-w-[15rem] max-h-[15rem]" width={205} height={205} src={product.productImageUrl} alt={product.name}/>
-		            			<p className="font-semibold">{product.name}</p> 
-		            			<p>₹{product.price}</p> 
+						<div className="flex justify-between mt-2 items-center">
+		            			   <p>{product.name}</p> 
+						   <div>
+							   {isLoggedIn ?  <div className="flex flex-row gap-1"> <MdOutlineDeleteOutline onClick={()=>deleteProduct(product._id)}/> </div>  : null}
+					           </div>  						
+				                </div> 
+		            			<p className="font-semibold">₹{product.price}</p> 
 		            		</div> 
 		            	)
 		               })
