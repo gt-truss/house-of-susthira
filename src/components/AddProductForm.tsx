@@ -48,7 +48,8 @@ export default function AddProductForm(){
                postData
              );
              console.log(response.data);     
-	     router.push("/category");
+	     //router.push("/category");
+	     window.location.reload();
          } catch (error) {
            console.log("Error:", error);   
          }
