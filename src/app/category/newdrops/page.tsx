@@ -8,21 +8,26 @@ import { IoMdAddCircle } from "react-icons/io";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import Modal from "../../../components/Modal";
 import axios from "axios";
+import Loading from "../../../components/Loading"
 
 export default function Newdrops(){
 	const [fetchedProducts, setFetchedProducts] = useState<any[]>([]);	
 	const [isAdminModalOpen, setIsAdminModalOpen] = useState(false);
 	const [addProductModal, setAddProductModal] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoading, setIsLoading] = useState(false);
 	//const [token, setToken] = useState<String | null>('');
 
         const fetchProducts = async()=>{
+		setIsLoading(true);
         	try{
         		const response = await axios.get(`${process.env.ENDPOINT_URL}/products`);
         	   	setFetchedProducts(response.data);
         	}catch(err){
         		console.error(err);
-        	}
+		} finally{
+		        setIsLoading(false);
+		}
         }
 
 	const checkAuthicatedAdmin = async()=>{
@@ -60,24 +65,28 @@ export default function Newdrops(){
 	return (
 		<div>
                   <div className=" flex gap-4">
-		      <div className="flex flex-row gap-4 text-left">
-		         {
-		               fetchedProducts.map((product)=>{
-		            	return(
-		            		<div key={product._id}>
-						<Image className="max-w-[15rem] max-h-[15rem]" width={205} height={205} src={product.productImageUrl} alt={product.name}/>
-						<div className="flex justify-between mt-2 items-center">
-		            			   <p>{product.name}</p> 
-						   <div>
-							   {isLoggedIn ?  <div className="flex flex-row gap-1"> <MdOutlineDeleteOutline onClick={()=>deleteProduct(product._id)}/> </div>  : null}
-					           </div>  						
-				                </div> 
-		            			<p className="font-semibold">₹{product.price}</p> 
-		            		</div> 
-		            	)
-		               })
-		         }
-		     </div> 
+		     {isLoading ? <Loading/> : (
+
+		           <div className="flex flex-row gap-4 text-left">
+		              {
+		                    fetchedProducts.map((product)=>{
+		                 	return(
+		                 		<div key={product._id}>
+		             			<Image className="max-w-[15rem] max-h-[15rem]" width={205} height={205} src={product.productImageUrl} alt={product.name}/>
+		             			<div className="flex justify-between mt-2 items-center">
+		                 			   <p>{product.name}</p> 
+		             			   <div>
+		             				   {isLoggedIn ?  <div className="flex flex-row gap-1"> <MdOutlineDeleteOutline onClick={()=>deleteProduct(product._id)}/> </div>  : null}
+		             		           </div>  						
+		             	                </div> 
+		                 			<p className="font-semibold">₹{product.price}</p> 
+		                 		</div> 
+		                 	)
+		                    })
+		              }
+		           </div> 
+
+		     )}
 		     <div onClick={()=>{if(isLoggedIn){setAddProductModal(true)}else{setIsAdminModalOpen(true)}}} className="flex flex-col gap-3 items-center text-gray-400 cursor-pointer">
 		       <IoMdAddCircle size={25}/>
 		       <p>Add Product</p> 
