@@ -7,11 +7,9 @@ const nextConfig = {
               hostname: "storage.googleapis.com",
             },
     ],
-	  //domains: ['storage.googleapis.com']
   },
   env: {
->>>>>>> dev
-    // ENDPOINT_URL:'http://34.93.117.21'
+    ENDPOINT_URL:'http://localhost:4000'
   },
 
 };
