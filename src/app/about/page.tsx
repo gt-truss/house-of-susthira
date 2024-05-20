@@ -36,7 +36,7 @@ export default function About() {
   
       </p>
 	  {/*<div className="h-12 bg-gray-500"/>*/}
-      <div className="grid grid-cols-4 my-10 gap-12">
+      <div className="grid md:grid-cols-4 grid-cols-1 my-10 gap-12">
         <div>
           <ImLeaf size={45}/>
           <p className="font-semiold mb-3 text-lg">Sustainability</p>

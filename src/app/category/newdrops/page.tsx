@@ -67,7 +67,7 @@ export default function Newdrops(){
                   <div className=" flex gap-4">
 		     {isLoading ? <Loading/> : (
 
-		           <div className="flex flex-row gap-4 text-left">
+		           <div className="flex flex-row  flex-wrap gap-4 text-left">
 		              {
 		                    fetchedProducts.map((product)=>{
 		                 	return(
@@ -89,7 +89,7 @@ export default function Newdrops(){
 		     )}
 		     <div onClick={()=>{if(isLoggedIn){setAddProductModal(true)}else{setIsAdminModalOpen(true)}}} className="flex flex-col gap-3 items-center text-gray-400 cursor-pointer">
 		       <IoMdAddCircle size={25}/>
-		       <p>Add Product</p> 
+		       <p className="text-xs">Add Product</p> 
 		     </div>
 		     {isLoggedIn ?  <Modal isOpen={addProductModal} onClose={()=>setAddProductModal(false)} text={<React.Fragment><AddProductForm/></React.Fragment>}/> : <Modal isOpen={isAdminModalOpen} onClose={()=>setIsAdminModalOpen(false)} text={<React.Fragment><AdminForm /></React.Fragment>}/> }
                   </div>

@@ -28,7 +28,7 @@ export default function CategoryLayout({
 	       <Link href="/">home</Link>
 	       <Link href={currPath}>{currPath}</Link>
 	      </div> 
-	      <div className="flex gap-10">
+	      <div className="flex md:flex-row flex-col gap-10">
 	        <Sidebar/>
 	        {children}
 	      </div> 

@@ -10,8 +10,7 @@ const nextConfig = {
 	  //domains: ['storage.googleapis.com']
   },
   env: {
-    //ENDPOINT_URL:'http://localhost:4000'
-    ENDPOINT_URL:'https://busy-gaiters-toad.cyclic.app'
+>>>>>>> dev
     // ENDPOINT_URL:'http://34.93.117.21'
   },
 
