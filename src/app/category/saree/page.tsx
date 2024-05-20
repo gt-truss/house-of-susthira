@@ -75,7 +75,7 @@ export default function Saree() {
       <div className=" flex gap-4">
 		     {isLoading ? <Loading/> : (
 
-		           <div className="flex flex-row gap-4 text-left">
+		           <div className="flex flex-row flex-wrap gap-4 text-left">
 		              {
 		                    fetchedProducts.map((product)=>{
 		                 	return(
@@ -106,7 +106,7 @@ export default function Saree() {
           className="flex flex-col gap-3 items-center text-gray-400 cursor-pointer"
         >
           <IoMdAddCircle size={25} />
-          <p>Add Product</p>
+	  <p className="text-xs">Add Product</p> 
         </div>
         {isLoggedIn ? (
           <Modal
