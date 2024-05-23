@@ -62,10 +62,10 @@ export default function Shopall(){
 	},[])
 	return (
 		<div className="">
-                  <div className=" flex flex-wrap gap-4 ">
 		     {isLoading ? <Loading/> : (
 
-		           <div className="flex flex-row flex-wrap justify-center md:justify-left gap-4 text-left">
+
+		           <div className="flex flex-row flex-wrap gap-4 justify-center md:justify-start text-left">
 		              {
 		                    fetchedProducts.map((product)=>{
 		                 	return(
@@ -74,7 +74,7 @@ export default function Shopall(){
 		             			<div className="flex justify-between mt-2 items-center">
 		                 			   <p>{product.name}</p> 
 		             			   <div>
-		             				   {isLoggedIn ?  <div className="flex flex-row gap-1"> <MdOutlineDeleteOutline onClick={()=>deleteProduct(product._id)}/> </div>  : null}
+		             				   {isLoggedIn ?  <div className="flex flex-row gap-1 cursor-pointer"> <MdOutlineDeleteOutline onClick={()=>deleteProduct(product._id)}/> </div>  : null}
 		             		           </div>  						
 		             	                </div> 
 		                 			<p className="font-semibold">₹{product.price}</p> 
@@ -82,17 +82,19 @@ export default function Shopall(){
 		                 	)
 		                    })
 		              }
+
+		              <div onClick={()=>{if(isLoggedIn){setAddProductModal(true)}else{setIsAdminModalOpen(true)}}} className="flex flex-col gap-3 items-center text-gray-400 cursor-pointer">
+		                      <div className="w-[13.5rem] h-[15rem] border-dotted border-[3px] border-gray-300 flex flex-col items-center justify-center">
+		                       <IoMdAddCircle size={25}/>
+		                       <p className="text-xs">Add Product</p> 
+		                      </div> 
+		              </div>
 		           </div> 
 
+
+
 		     )}
-		     <div onClick={()=>{if(isLoggedIn){setAddProductModal(true)}else{setIsAdminModalOpen(true)}}} className="flex flex-col gap-3 items-center text-gray-400 cursor-pointer">
-			     <div className="w-[13.5rem] h-[15rem] border-dotted border-[3px] border-gray-300 flex flex-col items-center justify-center">
-		              <IoMdAddCircle size={25}/>
-		              <p className="text-xs">Add Product</p> 
-			     </div> 
-		     </div>
 		     {isLoggedIn ?  <Modal isOpen={addProductModal} onClose={()=>setAddProductModal(false)} text={<React.Fragment><AddProductForm/></React.Fragment>}/> : <Modal isOpen={isAdminModalOpen} onClose={()=>setIsAdminModalOpen(false)} text={<React.Fragment><AdminForm /></React.Fragment>}/> }
-                  </div>
 		</div>
 	)
 }
