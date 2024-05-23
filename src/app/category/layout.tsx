@@ -23,7 +23,7 @@ export default function CategoryLayout({
   }, []);
 
   return (
-	  <div className="mx-6 mb-10 h-screen">
+	  <div className="mx-6 mb-10">
 	      <div className="mb-6 mt-4 font-semibold">
 	       <Link href="/">home</Link>
 	       <Link href={currPath}>{currPath}</Link>

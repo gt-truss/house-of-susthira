@@ -61,11 +61,11 @@ export default function Shopall(){
 		checkAuthicatedAdmin();
 	},[])
 	return (
-		<div>
-                  <div className=" flex gap-4">
+		<div className="">
+                  <div className=" flex flex-wrap gap-4 ">
 		     {isLoading ? <Loading/> : (
 
-		           <div className="flex flex-row flex-wrap gap-4 text-left">
+		           <div className="flex flex-row flex-wrap justify-center md:justify-left gap-4 text-left">
 		              {
 		                    fetchedProducts.map((product)=>{
 		                 	return(
@@ -86,8 +86,10 @@ export default function Shopall(){
 
 		     )}
 		     <div onClick={()=>{if(isLoggedIn){setAddProductModal(true)}else{setIsAdminModalOpen(true)}}} className="flex flex-col gap-3 items-center text-gray-400 cursor-pointer">
-		       <IoMdAddCircle size={25}/>
-		       <p className="text-xs">Add Product</p> 
+			     <div className="w-[13.5rem] h-[15rem] border-dotted border-[3px] border-gray-300 flex flex-col items-center justify-center">
+		              <IoMdAddCircle size={25}/>
+		              <p className="text-xs">Add Product</p> 
+			     </div> 
 		     </div>
 		     {isLoggedIn ?  <Modal isOpen={addProductModal} onClose={()=>setAddProductModal(false)} text={<React.Fragment><AddProductForm/></React.Fragment>}/> : <Modal isOpen={isAdminModalOpen} onClose={()=>setIsAdminModalOpen(false)} text={<React.Fragment><AdminForm /></React.Fragment>}/> }
                   </div>
