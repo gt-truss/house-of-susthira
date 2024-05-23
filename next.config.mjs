@@ -9,7 +9,9 @@ const nextConfig = {
     ],
   },
   env: {
-    ENDPOINT_URL:'https://api.houseofsusthira.in'
+    //ENDPOINT_URL:'http://localhost:4000'
+    ENDPOINT_URL: 'https://api.houseofsusthira.in'
+>>>>>>> dev
   },
 
 };

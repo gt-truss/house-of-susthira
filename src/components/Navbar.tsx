@@ -17,7 +17,7 @@ export default function Header() {
   };
 
   return (
-    <section className="content ">
+	  <section className="shadow-md content">
       <section
         className={
           "w-full md:back z-[1]  md:px-6 bg-transparent transition-all ease-in delay-300"
@@ -25,8 +25,9 @@ export default function Header() {
       >
         <nav className="flex  justify-between items-center px-10  h-24 rounded-lg  transition-all delay-300 ease-in-out">
           <div
-            className={`md:flex hidden sm:flex-row  space-x-10 text-sm sm:text-lg`}
+            className={`md:flex hidden sm:flex-row items-center  space-x-10 text-sm sm:text-lg`}
           >
+		        <Link href={"/"}>Home</Link>
 	          	<Link href={"/about"}>About</Link>
 	          	<Link href={"/category/newdrops"}> New Drops </Link>
 	          	<Link href={"/category/saree"}> Sarees </Link>
@@ -57,6 +58,7 @@ export default function Header() {
                   &times;
                 </button>
                 <nav className="flex flex-col text-center mt-36 gap-7 absolute w-full h-full text-3xl   z-[-3]">
+	          	<Link className="hover:text-[#EE959C]" href={"/"}>Home</Link>
 	          	<Link className="hover:text-[#EE959C]" href={"/about"}>About</Link>
 	          	<Link className="hover:text-[#EE959C]" href={"/category/newdrops"}> New Drops </Link>
 	          	<Link className="hover:text-[#EE959C]" href={"/category/saree"}> Sarees </Link>

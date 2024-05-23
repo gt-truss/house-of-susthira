@@ -17,11 +17,12 @@ return (
 
 		<ul className="text-sm flex flex-col gap-2">
 			<p className="font-bold text-2xl">Visit</p>
-			<li>Shop All</li>
-			<li>Sarees</li>
-			<li>Suits</li>
-			<li>New Drops</li>
-			<li>About</li>
+
+			<li><Link href={"/about"}>About</Link></li>
+	          	<li><Link href={"/category/newdrops"}> New Drops </Link></li>
+	          	<li><Link href={"/category/saree"}> Sarees</Link></li>
+	          	<li><Link href={"/category/suit"}> Suits </Link></li>
+	          	<li><Link href={"/category/shopall"}> Shop All</Link></li>
 		</ul>
 
 
@@ -39,7 +40,7 @@ return (
 	<div className="flex flex-col items-center gap-3">
 
            <Link href={"/"}><Image width={100} height={100} className="rounded-full " src={logo} alt="logo" /></Link>
-	   <p>Sustainable, Luxury Indian Wear for the Modern Indian Women</p> 
+	   <p className="text-center">Sustainable, Luxury Indian Wear for the Modern Indian Women</p> 
 
 	   <div className="flex justify-center gap-4">
            	<FaFacebook size={30}/> 
