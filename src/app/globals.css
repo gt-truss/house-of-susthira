@@ -1,8 +1,4 @@
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.hover-slide-in {
-  transition: transform 0.3s ease;
-  transform: translateX(-100%);
-}
+  @tailwind components;
+  @tailwind utilities;
+  
