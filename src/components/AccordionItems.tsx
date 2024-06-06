@@ -47,7 +47,7 @@ export default function AccordionItems(){
                       <AccordionItem value="item-6">
                         <AccordionTrigger>What is the estimated delivery time?</AccordionTrigger>
                         <AccordionContent>
-				Delivery times depend on your location and the type of product you order. For catalogue products, we offer same-day delivery in Delhi NCR. If you're elsewhere in India, delivery will take 3-5 days, and for international orders, expect 9-14 days.
+				Delivery times depend on your location and the type of product you order. For catalogue products, we offer same-day delivery in Delhi NCR. If youapos;re elsewhere in India, delivery will take 3-5 days, and for international orders, expect 9-14 days.
 For customized products, we need extra time to design and develop your order. Depending on the complexity of the design, this can take between 3 to 30 days.
                         </AccordionContent>
                       </AccordionItem>
